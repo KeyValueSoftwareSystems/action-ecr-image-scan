@@ -1,0 +1,36 @@
+name: "Scan Docker Images On Push to ECR"
+description: "Scans for container image vulnerabilities when an image is pushed to ECR"
+inputs:
+  ecr_repository:
+    description: "Name of the ECR repository"
+    required: true
+  image_tag:
+    description: "ECR Image tag"
+    required: true
+  pr_comment:
+    description: "Whether to comment the result on PR"
+    required: true
+  github_token:
+    description: "Github token for updating PR"
+    required: true 
+  url:
+    description: "URL for calling POST request for updating PR"
+    required: true  
+  aws_region: 
+    description: "AWS region"
+    required: true    
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.ecr_repository }}
+    - ${{ inputs.image_tag }}
+    - ${{ inputs.pr_comment }}
+    - ${{ inputs.github_token }}
+    - ${{ inputs.url }} 
+    - ${{ inputs.aws_region }}       
+outputs:
+  VULNERABILITY: 
+    description: 'If vulnerabilities are detected or not'      
+          
+    
