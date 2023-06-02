@@ -24,7 +24,7 @@ jobs:
     steps:
     - name: Scan Docker image
       id: docker-scan
-      uses: Ujjwal048/action-ecr-image-scan@main
+      uses: KeyValueSoftwareSystems/action-ecr-image-scan@main
       env:
         ECR_REPOSITORY: apparel-backend
         IMAGE_TAG:  	${{ github.sha }}
