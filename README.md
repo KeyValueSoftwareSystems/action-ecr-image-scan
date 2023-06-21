@@ -1,5 +1,8 @@
-# ECR Image Scanning GitHub Action
+<p  align="center">
+<img src="https://www.keyvalue.systems/logo.png" width="290" height="100">
+</p>
 
+# ECR Image Scanning GitHub Action
 This GitHub Action automatically scans an ECR (Elastic Container Registry) image when it is pushed to the repository. It utilizes the AWS CLI and ECR scanning capabilities to perform the scan and provide a scan report.
 
 ## Pre-requisites
