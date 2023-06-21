@@ -12,13 +12,13 @@ inputs:
     required: true
   github_token:
     description: "Github token for updating PR"
-    required: true 
+    required: false 
   url:
     description: "URL for calling POST request for updating PR"
-    required: true  
+    required: false
   aws_region: 
     description: "AWS region"
-    required: true    
+    required: true
 runs:
   using: "docker"
   image: "Dockerfile"

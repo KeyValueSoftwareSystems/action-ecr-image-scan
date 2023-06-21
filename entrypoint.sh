@@ -27,6 +27,8 @@ if [[ $? -eq 0 ]]; then
         
         if [[  $CRITICAL != 0 || $HIGH != 0 ]]; then
             VULNERABILITY=true
+        else 
+            VULNERABILITY=false 
         fi
     fi
     HYPERLINK_URL="[Click here]($REPORT_URL)"

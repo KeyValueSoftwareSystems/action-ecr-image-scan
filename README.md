@@ -7,8 +7,12 @@ This GitHub Action automatically scans an ECR (Elastic Container Registry) image
 
 ## Pre-requisites
 
-To use this action, ensure that you have the AWS CLI installed and properly configured in your runner environment. Additionally, make sure you provide the required AWS credentials with the necessary permissions to access and scan the ECR image.Also make sure to disable scan on push to the ecr repository.
+To use this action, ensure that you have the AWS CLI installed and properly configured in your runner environment.IAM permissions required for this action:
 
+ * ecr:DescribeImageScanFindings
+ * ecr:StartImageScan
+
+Also ensure that scan on push is disabled on the repository.
 
 ## Description
 
@@ -29,7 +33,7 @@ jobs:
       id: docker-scan
       uses: KeyValueSoftwareSystems/action-ecr-image-scan@main
       env:
-        ECR_REPOSITORY: apparel-backend
+        ECR_REPOSITORY: ${{ env.ECR_REPOSITORY }}
         IMAGE_TAG:  	${{ github.sha }}
       with:
         ecr_repository: ${{ env.ECR_REPOSITORY }}
@@ -49,20 +53,25 @@ jobs:
 ```
 ## Input
 
-   - aws-region (required): The AWS region where your ECR repository is located.
-   - ecr_repository (required): The name of your ECR repository.
-   - image_tag (required): Tag of the image being pushed
-   - pr_comment (required): true/false   
-   - github_token (required): For updating th PR comment with scan result
-   - url (required): URL for calling the POST request to update PR
+| Input  | Required? | Description |
+| ------ | --------- | ----------- |
+| ecr_repository | Yes  | The name of your ECR repository |
+| image_tag    | Yes | Tag of the image being pushed|
+| aws_region | Yes | AWS region of the repository|
+| pr_comment | Yes | true/false |
+|github_token| No |For updating th PR comment with scan result|
+|url| No |URL for calling the POST request to update PR|
+
 
 ## Output
 
 After the scan is completed, this action will produce the scan results and provide a link to the scan report. The scan report and the detailed report URL in the AWS console will be included as comments in the pull request and displayed in the GitHub step summary for easy access and visibility.
-### Parameters passed as ouput
+### Parameters passed as output :
      
-  - VULNERABILITY : If vulnerabilities are detected or not
 
+| Output  | Value | Description |
+| ------ | --------- | ----------- |
+| VULNERABILITY | true/false | Whether vulnerabilities are found or not |
 
 ## Sample Output
 #### Github PR comment
