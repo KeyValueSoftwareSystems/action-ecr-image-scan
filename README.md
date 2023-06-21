@@ -4,7 +4,7 @@ This GitHub Action automatically scans an ECR (Elastic Container Registry) image
 
 ## Pre-requisites
 
-To use this action, ensure that you have the AWS CLI installed and properly configured in your runner environment. Additionally, make sure you provide the required AWS credentials with the necessary permissions to access and scan the ECR image..
+To use this action, ensure that you have the AWS CLI installed and properly configured in your runner environment. Additionally, make sure you provide the required AWS credentials with the necessary permissions to access and scan the ECR image.Also make sure to disable scan on push to the ecr repository.
 
 
 ## Description
